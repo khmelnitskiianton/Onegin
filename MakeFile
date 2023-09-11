@@ -1,6 +1,6 @@
 CC = g++
 
-SHELL=C:/Windows/System32/cmd.exe
+SHELL=C:/Windows/System64/cmd.exe
 
 EXECUTABLE = proga.exe
 
