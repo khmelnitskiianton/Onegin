@@ -1,8 +1,5 @@
 #include "head.h"
 
-#define FILE_READ "Onegin.txt" 
-#define FILE_WRITE "Dictionary_Onegin.txt"
-
 FILE* file_r_open (void)
 {
     FILE *file_read = nullptr;
@@ -96,10 +93,14 @@ char** str_orig_buff(char* text_buffer, size_t len)
 	return str_buffer;
 }
 
-void str_write_solo (char* stroka, FILE* filestream)
+int str_write_solo (char* stroka, FILE* filestream)
 {
     size_t i = 0;
     int x = 0;
+	/*if ((str_check(stroka)))
+	{
+		return 0;
+	}*/
 	while (*(stroka + i) != '\0')
     { 
 		if((x = putc(*(stroka + i), filestream)) == EOF)
@@ -112,6 +113,7 @@ void str_write_solo (char* stroka, FILE* filestream)
 		}
         i++;
     }
+	return 0;
 }
 
 void str_write_all (char** str_buffer, FILE* file_write)
@@ -122,93 +124,7 @@ void str_write_all (char** str_buffer, FILE* file_write)
 		str_write_solo(*(str_buffer + i), file_write);
 		i++;
 	}
-	fprintf(file_write, "\n--------------------------------------------------------------------------------------\n"
-						"\n--------------------------------------------------------------------------------------\n");
+	fprintf(file_write, "--------------------------------------------------------------------------------------------------------------------------------------------------------"
+						"\n--------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 }
 
-int str_compare(char* str1, char* str2)
-{
-	size_t i = 0;
-	size_t j = 0;
-	int flag1 = 0;
-	int flag2 = 0;
-
-	while ((*(str1 + i) != '\0') && (*(str1 + i) != '\n') && (*(str2 + j) != '\0') && (*(str2 + j) != '\n'))
-	{
-		if (((*(str1 + i) < 97) || (*(str1 + i) > 122)) && ((*(str1 + i) < 65) || (*(str1 + i) > 90)))
-		{
-			flag1 = 0;
-			i++;
-		}
-		else
-		{
-			flag1 = 1;
-		}
-		if (((*(str2 + j) < 97) || (*(str2 + j) > 122)) && ((*(str2 + j) < 65) || (*(str2 + j) > 90)))
-		{
-			flag2 = 0;
-			j++;
-		}
-		else
-		{
-			flag2 = 1;
-		}
-
-		if (flag1 && flag2)
-		{
-			if (tolower(*(str1 + i)) > tolower(*(str2 + j)))
-			{
-				return 1;
-			}
-			else if (tolower(*(str1 + i)) < tolower(*(str2 + j)))
-			{
-				return 0;
-			}
-			else
-			{
-				i++;
-				j++;
-			}
-		}
-	}
-	return 0;
-}
-
-char** str_sort1_buff(char** str_orig_buff)
-{
-	size_t n_strok = 0;
-	while (*(str_orig_buff + n_strok) != nullptr)
-	{
-		n_strok++;
-	}
-	n_strok++;
-
-	char** str_sort1_buffer = nullptr;
-	if ((str_sort1_buffer = (char**) calloc(n_strok + 1, sizeof(char*))) == nullptr)
-	{
-		assert(0);
-	}
-	for (size_t i = 0; i < n_strok; i++)
-	{
-		*(str_sort1_buffer + i) = *(str_orig_buff + i);
-	}
-	bubble_sort(str_sort1_buffer, n_strok);
-	return str_sort1_buffer;
-}
-
-void bubble_sort(char** array, size_t len)
-{
-	char* ptr = nullptr;
-	for (size_t i = 0; i < len - 2; i++)
-	{
-		for (size_t j = i+1; j < len - 1; j++)
-		{
-			if (str_compare(*(array + i), *(array + j))) 
-			{
-				ptr = *(array + j);
-				*(array + j) = *(array + i);
-				*(array + i) = ptr;
-			}
-		}
-	}
-}
