@@ -8,23 +8,32 @@
 #include <sys/stat.h>
 #include <stdlib.h>
 
+struct Line {
+    size_t len;
+
+    char* start_line;
+};
+
 struct Information 
 {   
     FILE*  file_text;
     FILE*  file_write;
+
     size_t size_text;
     size_t n_strings;
     size_t good_strings;
-    char*  text_buffer;
-    char** string_buffer;
-    char** sort1_buffer;
-    char** sort2_buffer;
+
+    char* text_buffer;
+    Line* string_buffer;
+    Line* sort1_buffer;
+    Line* sort2_buffer;
 };
 
-#include "sort.h"
+
+#include "destructor.h"
 #include "inout.h"
 
-#define FILE_READ  "Onegin_cut.txt"
+#define FILE_READ  "Onegin.txt"
 #define FILE_WRITE "Dictionary_Onegin.txt"
 
 #endif 

@@ -20,9 +20,9 @@ int main(void)
     struct Information file_data = {
         nullptr,
         nullptr,
-        NULL,
-        NULL,
-        NULL,
+        0,
+        0,
+        0,
         nullptr,
         nullptr,
         nullptr,
