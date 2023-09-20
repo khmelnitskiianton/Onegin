@@ -10,5 +10,3 @@ int destructor (struct Information* file_data)
 	file_close(file_data -> file_write);
 	file_close(file_data -> file_text);
 }
-
-

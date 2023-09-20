@@ -221,10 +221,9 @@ int bubble_sort (void* sort_buffer, const size_t len, const size_t size_one, int
 		for (size_t j = i+1; j < len; j++)
 		{	
 			x = comparator ((void*)((char*) sort_buffer + i * size_one), (void*)((char*) sort_buffer + j * size_one));
-			if (x) 
+			if (x == 1) 
 			{
 				change_elements ((void*)((char*) sort_buffer + i * size_one), (void*)((char*) sort_buffer + j * size_one), size_one);
-				continue;
 			}
 		}
 	}
