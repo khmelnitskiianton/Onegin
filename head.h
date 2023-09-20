@@ -7,6 +7,7 @@
 #include <assert.h>
 #include <sys/stat.h>
 #include <stdlib.h>
+#include <algorithm>
 
 struct Line {
     size_t len;
@@ -31,7 +32,7 @@ struct Information
 
 
 #include "destructor.h"
-#include "inout.h"
+#include "constructor.h"
 
 #define FILE_READ  "Onegin.txt"
 #define FILE_WRITE "Dictionary_Onegin.txt"

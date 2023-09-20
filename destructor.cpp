@@ -1,6 +1,6 @@
 #include "head.h"
 
-void destructor (struct Information* file_data)
+int destructor (struct Information* file_data)
 {
 	free(file_data -> text_buffer);
 	free(file_data -> string_buffer);

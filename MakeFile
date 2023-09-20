@@ -20,6 +20,7 @@ destructor.o:
 
 clean:
 	erase D:\Study\C\Onegin\*.o
+	erase D:\Study\C\Onegin\Dictionary_Onegin.txt
 
 run: 
 	D:/Study/C/Onegin/$(EXECUTABLE)
