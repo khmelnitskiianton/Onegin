@@ -113,6 +113,8 @@ int constructor (struct Information* file_data)
 	str_write_all (file_data -> string_buffer, file_data);
     str_write_all (file_data -> sort1_buffer,  file_data);
     str_write_all (file_data -> sort2_buffer,  file_data);
+
+	return 1;
 }
 
 FILE* file_rb_open (void)
@@ -145,6 +147,7 @@ int file_close (FILE *file_text)
 	{
 		assert(0);
 	}
+	return 1;
 }
 
 size_t text_size (FILE *file_text)
@@ -206,6 +209,7 @@ int str_write_all (const Line* string_buffer, struct Information* file_data)
 	}
 	fprintf(file_data -> file_write, "\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------"
 						               "\n--------------------------------------------------------------------------------------------------------------------------------------------------------\n\n");
+	return 1;
 }
 
 int bubble_sort (void* sort_buffer, const size_t len, const size_t size_one, int (*comparator) (const void*, const void*)) 
@@ -227,6 +231,7 @@ int bubble_sort (void* sort_buffer, const size_t len, const size_t size_one, int
 			}
 		}
 	}
+	return 1;
 }
 
 int comparator_start (const void* str11, const void* str22)
@@ -238,10 +243,10 @@ int comparator_start (const void* str11, const void* str22)
 
 	Line str1       = {0, nullptr};
 	Line str2       = {0, nullptr};
-	str1.start_line = ((Line*) str11) -> start_line;
-	str2.start_line = ((Line*) str22) -> start_line;
-	str1.len        = ((Line*) str11) -> len;
-	str2.len        = ((Line*) str22) -> len;
+	str1.start_line = ((const Line*) str11) -> start_line;
+	str2.start_line = ((const Line*) str22) -> start_line;
+	str1.len        = ((const Line*) str11) -> len;
+	str2.len        = ((const Line*) str22) -> len;
 
 	size_t i        = 0;
 	size_t j        = 0;
@@ -297,10 +302,10 @@ int comparator_end (const void* str11, const void* str22)
 	
 	Line str1       = {NULL, nullptr};
 	Line str2       = {NULL, nullptr};
-	str1.start_line = ((Line*) str11) -> start_line;
-	str2.start_line = ((Line*) str22) -> start_line;
-	str1.len        = ((Line*) str11) -> len;
-	str2.len        = ((Line*) str22) -> len;
+	str1.start_line = ((const Line*) str11) -> start_line;
+	str2.start_line = ((const Line*) str22) -> start_line;
+	str1.len        = ((const Line*) str11) -> len;
+	str2.len        = ((const Line*) str22) -> len;
 	
 	size_t i        = str1.len;
 	size_t j        = str2.len;
@@ -379,4 +384,5 @@ int change_elements (void* elem1, void* elem2, const size_t size_one)
 	memcpy (elem2, elem1, size_one);
 	memcpy (elem1, ptr,   size_one);
 	free (ptr);
+	return 1;
 }
